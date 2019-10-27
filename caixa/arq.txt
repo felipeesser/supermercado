@@ -1,0 +1,9 @@
+banana
+3.00
+3
+maracuja
+5.00
+6
+maca
+10.00
+9
