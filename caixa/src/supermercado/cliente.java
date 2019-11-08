@@ -17,6 +17,13 @@ public class cliente {
     public void setformapag(String pagamento){
     this.forma_pag=pagamento;
     }
+    public carrinho getcarrinho(){
+    return this.meucarrinho;
+    }
+    public void setcarrinho(carrinho car){
+    this.meucarrinho=car;
+    }
+    
     public void adiciona_carrinho(){
         try{
        InputStreamReader in;
@@ -46,7 +53,7 @@ public class cliente {
                    }
                }
            }while(linha!=null);
-           this.meucarrinho=c1;
+           this.setcarrinho(c1);
        }
        in.close();
        buf.close();
