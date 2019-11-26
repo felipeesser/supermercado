@@ -10,6 +10,8 @@ public class Estoque  {
     public Produto getproduto(int i){
     return this.produtos.get(i);
     }
+
+    /**retorna a quantidade de produtos dentro do estoque**/
     public int contagem(){
         return this.produtos.size();
     }

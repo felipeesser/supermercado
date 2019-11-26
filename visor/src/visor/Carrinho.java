@@ -11,6 +11,8 @@ public class Carrinho {
     public Produto getitem(){
     return this.itens.remove(0);
     }
+
+    /**checa se o carrinho esta vazio**/
     public boolean carvazio(){
     return this.itens.isEmpty();}
     

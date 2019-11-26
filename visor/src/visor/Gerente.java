@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 
 
 public class Gerente {
+
+    /**preenche o estoque inserindo novos produtos, com nome, preço e quantidade**/
     public void preenchestoque(Estoque e1){
    try{
        InputStreamReader in;
@@ -48,6 +50,8 @@ public class Gerente {
             System.out.println("erro");
        }
     }
+
+    /**retorna uma lista dos produtos, suas quantidades e preços que estão registrados no estoque**/
     public void declaraestoque(Estoque e1){
         for(int i=0;i<e1.contagem();i++){
             System.out.println(e1.getproduto(i).getnome());

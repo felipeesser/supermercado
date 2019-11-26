@@ -59,6 +59,9 @@ public abstract class Supermercado {
     public void setGerente(Gerente Gerente) {
         this.Gerente = Gerente;
     }
+
+    /**Cria os objetos necessários pro funcionamento do estoque, pega a lista de compras dos clientes
+     * e adiciona dentro dos seus respectivos carrinhos**/
     public void abre(){
        Gerente g1=new Gerente();
        Estoque e1=new Estoque();
@@ -91,6 +94,8 @@ public abstract class Supermercado {
     this.clientes.get(i).adiciona_carrinho(this.getEstoque(),i);
     }
         }
+
+    /**realiza a consulta de preços do produto escolhido**/
     public void consulta_preco(String p,Estoque e1){
     System.out.println("Cliente consultou o preco do seguinte produto->");
     for(int i=0;i<e1.contagem();i++){
@@ -100,6 +105,8 @@ public abstract class Supermercado {
     }
     }
     }
+
+
     public void compras(){
         int j=0;
         int k=0;

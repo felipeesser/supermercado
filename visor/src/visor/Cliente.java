@@ -24,7 +24,9 @@ public class Cliente extends Supermercado {
     public void setcarrinho(Carrinho car){
     this.meucarrinho=car;
     }
-    
+
+    /**preenche o carrinho do cliente de acordo com o estoque disponível,
+     * além de definir qual método de pagamento**/
     public void adiciona_carrinho(Estoque e1,int ncliente){
         try{
          
@@ -95,6 +97,8 @@ public class Cliente extends Supermercado {
             System.out.println("erro");
        }
     }
+
+    /**expõe os itens que estão dentro do carrinho**/
     public void declaracarrinho(){
     while(!this.meucarrinho.carvazio()){
         Produto k=this.meucarrinho.getitem();
