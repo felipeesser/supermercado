@@ -7,14 +7,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Cliente extends Supermercado {
+public class Cliente {
     private String forma_pag;
-
+    private float carteira;
+    private Carrinho meucarrinho;
     public float getCarteira() {
         return carteira;
     }
-    private float carteira;
-    private Carrinho meucarrinho;
     public String getformapag(){
     return this.forma_pag;
     }
@@ -28,7 +27,8 @@ public class Cliente extends Supermercado {
     this.meucarrinho=car;
     }
     
-    public void adiciona_carrinho(Estoque e1,int ncliente){
+    public void adiciona_carrinho(Estoque e1,int ncliente,BuscaPreco bp){//adiciona produtos no carrinho de um
+                                                                         //a partir de um arquivo
         try{
          
        InputStreamReader in;
@@ -69,7 +69,7 @@ public class Cliente extends Supermercado {
                    if(i==2){
                        if(linha.equals("verifica")){
                            linha=buf.readLine();
-                           this.consulta_preco(linha,e1);
+                           bp.consulta_preco(linha,e1);
                            cont=3;
                    }else{
                            linha=buf.readLine();

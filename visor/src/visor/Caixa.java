@@ -7,8 +7,8 @@ public class Caixa {
     private ArrayList<Cliente> clientela= new ArrayList<Cliente>();//clientes q passaram nesse caixa
     private ArrayList<Funcionario> func= new ArrayList<Funcionario>();//funcionários q atenderam nesse caixa
     private String nomedocaixa;
-    private int utilizado;
-    private float total;
+    private int utilizado;//flag q determina se um caixa foi utilizado no dia
+    private float total;//valor total de vendas registradas no caixa
 
     public float getTotal() {
         return total;
@@ -51,7 +51,9 @@ public class Caixa {
     public void setfunc(Funcionario f1) {
         this.func.add(f1);
     }
-    public void totalcaixa(Estoque e1){
+    public void totalcaixa(Estoque e1){//a partir das compras de um vetor cliente define o total de vendas no caixa
+                                        //tmb verifica se o cliente pagou em cartao ou dinheiro e demonstra essa 
+                                        //informacao no terminal
         float l=0;
         float t=0;
         for (int i=0;i<this.tamcliente();i++){

@@ -1,12 +1,12 @@
 
 package visor;
 
-public class Visor extends Supermercado {
+public class Visor {
  
     public static void main(String[] args) {
-       Visor v1=new Visor(); 
-       v1.abre();
-       v1.compras();
+       Supermercado s1=new Supermercado(); 
+       s1.abre();
+       s1.compras();
     }
     
 }

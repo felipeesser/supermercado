@@ -11,7 +11,8 @@ import java.io.PrintWriter;
 
 
 public class Gerente {
-    public void preenchestoque(Estoque e1){
+    public void preenchestoque(Estoque e1){//método de gerente que busca as informacoes de um estoque em um arquivo texto
+                                           //e atualiza os atributos de um objeto estoque com essas informacoes
    try{
        InputStreamReader in;
        BufferedReader buf;
@@ -50,14 +51,11 @@ public class Gerente {
             System.out.println("erro");
        }
     }
-    public void declaraestoque(Estoque e1){
-        for(int i=0;i<e1.contagem();i++){
-            System.out.println(e1.getproduto(i).getnome());
-            System.out.println(e1.getproduto(i).getpreco());
-            System.out.println(e1.getproduto(i).getqnt());
-        }
-}
-    public void relatorio(Estoque e1,Caixa[] fil,int flag){
+ 
+    public void relatorio(Estoque e1,Caixa[] fil,int flag){//metodo de gerente que cria dois arquivos texto contento informaçoes
+                                           //das vendas realizadas: quantidade inicial de produtos no estoque, quantidade final de produtos
+                                           //no estoque, nome do funcionario que realizou a venda e o caixa em que a venda foi realizada,
+                                           //total de vendas por caixa,total de vendas por cliente
       try{
        if(flag==0){
       FileOutputStream arquivo= new FileOutputStream("relatorio1.txt");

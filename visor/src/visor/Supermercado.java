@@ -7,26 +7,33 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public abstract class Supermercado {
-    private Funcionario[] funcionarios=new Funcionario[5];
-    private Caixa[] filas=new Caixa[3];
+public class Supermercado {
+    private Funcionario[] funcionarios=new Funcionario[5];//vetores e listas do supermercado-contem respectivamente
+    private Caixa[] filas=new Caixa[3];                   //os 5 objetos funcionarios do supermercado,os 3 objetos caixas  e
+    private ArrayList<Cliente> clientes= new ArrayList<Cliente>();//uma lista de objetos clientes
     private Gerente Gerente;
     private Estoque Estoque;
-    private ArrayList<Cliente> clientes= new ArrayList<Cliente>();
+    private BuscaPreco maqpreco;
+    public void setMaqpreco(BuscaPreco bp) {
+        this.maqpreco=bp;
+    }
+    public BuscaPreco getMaqpreco() {
+        return this.maqpreco;
+    }
     public void setEstoque(Estoque e) {
         this.Estoque=e;
-    }
-    public Cliente getClientes(int i) {
-        return this.clientes.get(i);
     }
     public Estoque getEstoque() {
         return this.Estoque;
     }
-    public int sizecliente() {
-        return this.clientes.size();
+    public Cliente getClientes(int i) {
+        return this.clientes.get(i);
     }
     public void setCliente(Cliente c) {
         this.clientes.add(c);
+    }
+    public int sizecliente() {
+        return this.clientes.size();
     }
     public Funcionario getFuncionarios(int i) {
         return funcionarios[i];
@@ -59,8 +66,11 @@ public abstract class Supermercado {
     public void setGerente(Gerente Gerente) {
         this.Gerente = Gerente;
     }
-    public void abre(){
-        for(int u=0;u<5;u++){
+    //fim dos métodos getter e setter
+    public void abre(){//adiona objetos com valores iniciais nos vetores e listas do supermercado
+        BuscaPreco bp=new BuscaPreco();
+        this.setMaqpreco(bp);
+        for(int u=0;u<5;u++){//modifica o atributo nome de Funcionario
             Funcionario f=new Funcionario();
             if(u==0)f.setNome("Felipe");
             if(u==1)f.setNome("Victor");
@@ -69,23 +79,26 @@ public abstract class Supermercado {
             if(u==4)f.setNome("Pedro");
             this.setFuncionarios(f);
             }
-        for(int c=0;c<3;c++){
+        for(int c=0;c<3;c++){//modifica o atributo nome de Caixa
             Caixa cx=new Caixa();
-            if(c==0){cx.setNomedocaixa("Caixa1");
+            if(c==0){
+            cx.setNomedocaixa("Caixa1");
             cx.setUtilizado(0);
             this.setFilas(cx);}
-            if(c==1){cx.setNomedocaixa("Caixa2");
+            if(c==1){
+            cx.setNomedocaixa("Caixa2");
             cx.setUtilizado(0);
             this.setFilas(cx);}
-            if(c==2){cx.setNomedocaixa("Caixa3");
+            if(c==2){
+            cx.setNomedocaixa("Caixa3");
             cx.setUtilizado(0);
             this.setFilas(cx);
             }
         }
        Gerente g1=new Gerente();
        Estoque e1=new Estoque();
-       g1.preenchestoque(e1);
-       this.setEstoque(e1);
+       g1.preenchestoque(e1);//método de gerente que busca as informacoes de um estoque em um arquivo texto
+       this.setEstoque(e1);//e atualiza os atributos de um estoque com essas informacoes
        this.setGerente(g1);
        this.getGerente().relatorio(this.getEstoque(), filas, 0);
         try{
@@ -111,19 +124,12 @@ public abstract class Supermercado {
        }
         for (int i=0;i<this.clientes.size();i++){
         
-    this.clientes.get(i).adiciona_carrinho(this.getEstoque(),i);
+    this.clientes.get(i).adiciona_carrinho(this.getEstoque(),i,this.getMaqpreco());
     }
         }
-    public void consulta_preco(String p,Estoque e1){
-    System.out.println("Cliente consultou o preco do seguinte produto->");
-    for(int i=0;i<e1.contagem();i++){
-    if(p.equals(e1.getproduto(i).getnome())){
-        System.out.println(e1.getproduto(i).getnome());
-    System.out.println(e1.getproduto(i).getpreco());
-    }
-    }
-    }
-    public void compras(){
+    public void compras(){//atribui em objetos caixa e funcionarios quais clientes foram atendidos por ambos
+                          //percorre os vetores e listas de Supermercado realizando a simulacao de um dia de vendas
+                          //de um supermercado
         int j=0;
         int k=0;
         for(int i=0;i<this.sizecliente();i++){
