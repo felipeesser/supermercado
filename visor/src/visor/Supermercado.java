@@ -59,15 +59,35 @@ public abstract class Supermercado {
     public void setGerente(Gerente Gerente) {
         this.Gerente = Gerente;
     }
-
-    /**Cria os objetos necessários pro funcionamento do estoque, pega a lista de compras dos clientes
-     * e adiciona dentro dos seus respectivos carrinhos**/
     public void abre(){
+        for(int u=0;u<5;u++){
+            Funcionario f=new Funcionario();
+            if(u==0)f.setNome("Felipe");
+            if(u==1)f.setNome("Victor");
+            if(u==2)f.setNome("Paulo");
+            if(u==3)f.setNome("Pecanha");
+            if(u==4)f.setNome("Pedro");
+            this.setFuncionarios(f);
+            }
+        for(int c=0;c<3;c++){
+            Caixa cx=new Caixa();
+            if(c==0){cx.setNomedocaixa("Caixa1");
+            cx.setUtilizado(0);
+            this.setFilas(cx);}
+            if(c==1){cx.setNomedocaixa("Caixa2");
+            cx.setUtilizado(0);
+            this.setFilas(cx);}
+            if(c==2){cx.setNomedocaixa("Caixa3");
+            cx.setUtilizado(0);
+            this.setFilas(cx);
+            }
+        }
        Gerente g1=new Gerente();
        Estoque e1=new Estoque();
        g1.preenchestoque(e1);
        this.setEstoque(e1);
        this.setGerente(g1);
+       this.getGerente().relatorio(this.getEstoque(), filas, 0);
         try{
        InputStreamReader in;
        BufferedReader buf;
@@ -94,8 +114,6 @@ public abstract class Supermercado {
     this.clientes.get(i).adiciona_carrinho(this.getEstoque(),i);
     }
         }
-
-    /**realiza a consulta de preços do produto escolhido**/
     public void consulta_preco(String p,Estoque e1){
     System.out.println("Cliente consultou o preco do seguinte produto->");
     for(int i=0;i<e1.contagem();i++){
@@ -105,18 +123,25 @@ public abstract class Supermercado {
     }
     }
     }
-
-
     public void compras(){
         int j=0;
         int k=0;
-        for(int i=0;i<this.sizecliente()-1;i++){
+        for(int i=0;i<this.sizecliente();i++){
            this.filas[j].setClientela(this.getClientes(i));
+           this.funcionarios[k].setcomprador(this.getClientes(i));
            this.filas[j].setfunc(this.getFuncionarios(k));
-           if(k<4)k++;
+           if(i<3){
+           this.filas[i].setUtilizado(1);}
            if(k==4)k=0;
-           if(j<2)j++;
+           else k++;
            if(j==2)j=0;
+           else j++;
         }
+        for(int o=0;o<3;o++){
+            this.filas[o].totalcaixa(this.getEstoque());
+        }
+        for (int m=0;m<5;m++){
+        this.funcionarios[m].tiraestoque(this.getEstoque());}
+        this.getGerente().relatorio(this.getEstoque(), filas, 1);
     }
 }
