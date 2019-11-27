@@ -8,12 +8,10 @@ public class Carrinho {
     public void setitem(Produto p1){
         this.itens.add(p1);
     }
-    public Produto getitem(){
-    return this.itens.remove(0);
+    public Produto getitem(int i){
+    return this.itens.get(i);
     }
-
-    /**checa se o carrinho esta vazio**/
-    public boolean carvazio(){
-    return this.itens.isEmpty();}
+    public int tamanhocarrinho(){
+    return this.itens.size();}
     
 }

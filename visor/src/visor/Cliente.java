@@ -9,7 +9,10 @@ import java.io.InputStreamReader;
 
 public class Cliente extends Supermercado {
     private String forma_pag;
-    private float troco;
+
+    public float getCarteira() {
+        return carteira;
+    }
     private float carteira;
     private Carrinho meucarrinho;
     public String getformapag(){
@@ -24,9 +27,7 @@ public class Cliente extends Supermercado {
     public void setcarrinho(Carrinho car){
     this.meucarrinho=car;
     }
-
-    /**preenche o carrinho do cliente de acordo com o estoque disponível,
-     * além de definir qual método de pagamento**/
+    
     public void adiciona_carrinho(Estoque e1,int ncliente){
         try{
          
@@ -53,14 +54,14 @@ public class Cliente extends Supermercado {
                        if(i==1){
                            if(linha.equals("cartao")){
                            this.forma_pag=linha;
-                           System.out.println(this.forma_pag);
+                   
                            linha=buf.readLine();
                            cont=2;}
                            else{this.forma_pag=linha;
-                           System.out.println(this.forma_pag);
+                    
                            linha=buf.readLine();
                            this.carteira=Float.valueOf(linha);
-                           System.out.println(this.carteira);
+                  
                            cont=2;
                            }
                            
@@ -97,13 +98,11 @@ public class Cliente extends Supermercado {
             System.out.println("erro");
        }
     }
-
-    /**expõe os itens que estão dentro do carrinho**/
-    public void declaracarrinho(){
-    while(!this.meucarrinho.carvazio()){
-        Produto k=this.meucarrinho.getitem();
-    System.out.println(k.getnome());
-    System.out.println(k.getqnt());
-    }
-    }
+    //public void declaracarrinho(){
+    //while(!this.meucarrinho.carvazio()){
+      //  Produto k=this.meucarrinho.getitem();
+    //System.out.println(k.getnome());
+    //System.out.println(k.getqnt());
+    //}
+    //}
 }

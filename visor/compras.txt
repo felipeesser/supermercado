@@ -11,9 +11,9 @@ uva
 10
 #
 dinheiro
-20.00
+1000.00
 verifica
-maca
+uva
 banana
 4
 maca
@@ -22,7 +22,7 @@ uva
 10
 #
 dinheiro
-100.00
+1000.00
 N
 
 banana

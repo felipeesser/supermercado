@@ -4,13 +4,13 @@ package visor;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 
 public class Gerente {
-
-    /**preenche o estoque inserindo novos produtos, com nome, preço e quantidade**/
     public void preenchestoque(Estoque e1){
    try{
        InputStreamReader in;
@@ -50,8 +50,6 @@ public class Gerente {
             System.out.println("erro");
        }
     }
-
-    /**retorna uma lista dos produtos, suas quantidades e preços que estão registrados no estoque**/
     public void declaraestoque(Estoque e1){
         for(int i=0;i<e1.contagem();i++){
             System.out.println(e1.getproduto(i).getnome());
@@ -59,8 +57,58 @@ public class Gerente {
             System.out.println(e1.getproduto(i).getqnt());
         }
 }
-    //public void relatorio(){
-     //   try{}
-     //   catch(Exception e){}
-    //}
-}
+    public void relatorio(Estoque e1,Caixa[] fil,int flag){
+      try{
+       if(flag==0){
+      FileOutputStream arquivo= new FileOutputStream("relatorio1.txt");
+      PrintWriter pf=new PrintWriter(arquivo);
+        pf.println("Relatorio do inicio do dia:");
+        for(int i=0;i<e1.contagem();i++){
+        pf.println(e1.getproduto(i).getnome());
+        pf.println(e1.getproduto(i).getpreco());
+        pf.println(e1.getproduto(i).getqnt());
+        pf.println("------------------");
+        }pf.close();
+        arquivo.close();
+       }
+       else{
+           FileOutputStream arquivo= new FileOutputStream("relatorio2.txt");
+            PrintWriter pf=new PrintWriter(arquivo);
+            pf.println("Relatorio do fim do dia:");
+            for(int i=0;i<e1.contagem();i++){
+            pf.println(e1.getproduto(i).getnome());
+            pf.println(e1.getproduto(i).getpreco());
+            pf.println(e1.getproduto(i).getqnt());
+            pf.println("------------------");
+            }
+            pf.println("Total de vendas por caixa:");
+            for(int j=0;j<3;j++){
+                if(fil[j].getUtilizado()==1){
+                pf.println(fil[j].getNomedocaixa());
+                pf.println(fil[j].getTotal());}}
+            for(int j=0;j<3;j++){
+                if(fil[j].getUtilizado()==1){
+                pf.println("Vendas realizadas no decorrer do dia por cada caixa:");
+                float t=0;
+                for (int k=0;k<fil[j].tamcliente();k++){
+                t=0;
+                pf.println("Vendas realizada por:");
+                pf.println(fil[j].getfunc(k).getNome());
+                pf.println("No caixa:");
+                pf.println(fil[j].getNomedocaixa());
+                for(int l=0;l<fil[j].getClientela(k).getcarrinho().tamanhocarrinho();l++){
+                for(int p=0;p<e1.contagem();p++){
+                    if(fil[j].getClientela(k).getcarrinho().getitem(l).getnome().equals(e1.getproduto(p).getnome())){
+                        t=t+e1.getproduto(k).getpreco()*fil[j].getClientela(k).getcarrinho().getitem(l).getqnt();
+                        }
+                }
+                }
+                }
+                }
+            }
+       pf.close();
+        arquivo.close();}
+       }catch(Exception e){
+      System.out.println("erro");
+      }
+}}

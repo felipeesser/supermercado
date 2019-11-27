@@ -1,0 +1,39 @@
+Relatorio do fim do dia:
+banana
+3.0
+18
+------------------
+maracuja
+5.0
+20
+------------------
+maca
+10.0
+61
+------------------
+uva
+5.0
+50
+------------------
+Total de vendas por caixa:
+Caixa1
+304.0
+Caixa2
+172.0
+Caixa3
+0.0
+Vendas realizadas no decorrer do dia por cada caixa:
+Vendas realizada por:
+Felipe
+No caixa:
+Caixa1
+Vendas realizada por:
+Paulo
+No caixa:
+Caixa1
+Vendas realizadas no decorrer do dia por cada caixa:
+Vendas realizada por:
+Victor
+No caixa:
+Caixa2
+Vendas realizadas no decorrer do dia por cada caixa:
